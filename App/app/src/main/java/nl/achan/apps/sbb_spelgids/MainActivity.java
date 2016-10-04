@@ -20,6 +20,16 @@ import nl.achan.apps.sbb_spelgids.activities.BarcodeCaptureActivity;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
+
+    // use a compound button so either checkbox or switch widgets work.
+    private CompoundButton autoFocus;
+    private CompoundButton useFlash;
+    private TextView statusMessage;
+    private TextView barcodeValue;
+
+    private static final int RC_BARCODE_CAPTURE = 9001;
+    private static final String TAG = "BarcodeMain";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,13 +54,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         useFlash = (CompoundButton) findViewById(R.id.use_flash);
 
         findViewById(R.id.read_barcode).setOnClickListener(this);
-
-        Intent intent = new Intent(this, BarcodeCaptureActivity.class);
-        intent.putExtra(BarcodeCaptureActivity.AutoFocus, true);
-        intent.putExtra(BarcodeCaptureActivity.UseFlash, false);
-        //startActivity(intent);
-        startActivityForResult(intent, RC_BARCODE_CAPTURE);
-        //);
     }
 
     @Override
@@ -75,17 +78,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return super.onOptionsItemSelected(item);
     }
 
-
-    // use a compound button so either checkbox or switch widgets work.
-    private CompoundButton autoFocus;
-    private CompoundButton useFlash;
-    private TextView statusMessage;
-    private TextView barcodeValue;
-
-    private static final int RC_BARCODE_CAPTURE = 9001;
-    private static final String TAG = "BarcodeMain";
-
-
     /**
      * Called when a view has been clicked.
      *
@@ -94,7 +86,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.read_barcode) {
-            // launch barcode activity.
+
+            Intent intent = new Intent(this, BarcodeCaptureActivity.class);
+            intent.putExtra(BarcodeCaptureActivity.AutoFocus, autoFocus.isChecked());
+            intent.putExtra(BarcodeCaptureActivity.UseFlash, useFlash.isChecked());
+            //startActivity(intent);
+            startActivityForResult(intent, RC_BARCODE_CAPTURE);
+            //);
         }
     }
 
