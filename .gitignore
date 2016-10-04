@@ -36,5 +36,8 @@ captures/
 *.iml
 .idea/workspace.xml
 
+# Actually, just fuck this whole folder. It's generated anyway.
+.idea/
+
 # Keystore files
 *.jks
