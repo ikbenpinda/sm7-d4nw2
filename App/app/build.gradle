@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'android-apt'
 
 android {
     compileSdkVersion 24
@@ -9,7 +10,7 @@ android {
         minSdkVersion 19
         targetSdkVersion 24
         versionCode 1
-        versionName "1.0"
+        versionName "0.1"
     }
     buildTypes {
         release {
@@ -28,5 +29,9 @@ dependencies {
     // Important - the CameraSource implementation in this project requires version 8.1 or higher.
     compile 'com.google.android.gms:play-services-vision:9.4.0+'
     compile 'io.nlopez.smartlocation:library:3.2.7'
+    compile 'com.android.support:cardview-v7:+'
+    compile 'com.jakewharton:butterknife:8.4.0' // <3
+    apt 'com.jakewharton:butterknife-compiler:8.4.0'
+
 
 }

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="8dp">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:id="@+id/tv_leaderboard_position"
+        android:text="2"
+        android:paddingEnd="8dp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:text="[naam team]"
+            android:id="@+id/tv_team_name"
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@+id/tv_leaderboard_position" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="score:"
+            android:id="@+id/textView8"
+            android:paddingEnd="16dp"
+            android:layout_below="@+id/tv_team_name"
+            android:layout_alignStart="@+id/tv_team_name" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_score"
+            android:text="0/12"
+            android:layout_alignTop="@+id/textView8"
+            android:layout_alignStart="@+id/textView8"
+            android:layout_marginStart="43dp" />
+
+</RelativeLayout>
