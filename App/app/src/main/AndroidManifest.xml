@@ -4,10 +4,19 @@
     package="nl.achan.apps.sbb_spelgids">
 
     <uses-feature android:name="android.hardware.camera" />
-
+    <!-- Ask for all permissions because we aren't sure which method we're using yet. -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.BLUETOOTH"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.NFC"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY"/>
     <uses-permission android:name="android.permission.CAMERA" />
 
     <application
+        android:name="nl.achan.apps.sbb_spelgids.D4NW2"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -22,11 +31,11 @@
             android:value="barcode" />
 
         <activity
-            android:name=".MainActivity"
+            android:name=".camera.CameraActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
-            android:name=".activities.BarcodeCaptureActivity"
+            android:name=".scanner.BarcodeCaptureActivity"
             android:label="Read Barcode" />
         <activity
             android:name=".activities.MainMenuActivity"

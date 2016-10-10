@@ -26,7 +26,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import nl.achan.apps.sbb_spelgids.R;
-import nl.achan.apps.sbb_spelgids.models.LeaderboardAdapter;
+import nl.achan.apps.sbb_spelgids.leaderboard.LeaderboardAdapter;
 import nl.achan.apps.sbb_spelgids.models.Team;
 
 public class MainMenuActivity extends AppCompatActivity {

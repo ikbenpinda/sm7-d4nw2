@@ -1,4 +1,4 @@
-package nl.achan.apps.sbb_spelgids;
+package nl.achan.apps.sbb_spelgids.camera;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,9 +16,10 @@ import android.widget.TextView;
 import com.google.android.gms.common.api.CommonStatusCodes;
 import com.google.android.gms.vision.barcode.Barcode;
 
-import nl.achan.apps.sbb_spelgids.activities.BarcodeCaptureActivity;
+import nl.achan.apps.sbb_spelgids.R;
+import nl.achan.apps.sbb_spelgids.scanner.BarcodeCaptureActivity;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class CameraActivity extends AppCompatActivity implements View.OnClickListener{
 
 
     // use a compound button so either checkbox or switch widgets work.

@@ -21,4 +21,11 @@
         <item>"1"</item>
         <item>"2"</item>
     </string-array>
+    <string-array name="connection_method">
+        <item>"bluetooth"</item>
+        <item>"gps"</item>
+        <item>"network"</item>
+        <item>"barcode"</item>
+        <item>"NFC"</item>
+    </string-array>
 </resources>

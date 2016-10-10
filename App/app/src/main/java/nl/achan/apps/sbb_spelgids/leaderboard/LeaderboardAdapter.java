@@ -1,4 +1,4 @@
-package nl.achan.apps.sbb_spelgids.models;
+package nl.achan.apps.sbb_spelgids.leaderboard;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -12,6 +12,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import nl.achan.apps.sbb_spelgids.R;
+import nl.achan.apps.sbb_spelgids.models.Team;
 
 /**
  * Created by fhict on 07/10/16.
