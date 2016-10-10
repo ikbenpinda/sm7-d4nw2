@@ -2,6 +2,10 @@ package nl.achan.apps.sbb_spelgids.activities;
 
 import android.content.Context;
 import android.location.Location;
+import android.media.MediaPlayer;
+import android.media.Ringtone;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.support.design.widget.CoordinatorLayout;
@@ -33,11 +37,14 @@ public class SettingsActivity extends AppCompatActivity {
     @BindView(R.id.coordlayout_settings) CoordinatorLayout layout;
     @BindView(R.id.button_manage_locations) Button button;
 
+    private static final boolean CUSTOM_SOUNDS_ENABLED = true;
+
     AlertDialog locationsDialog;
     AlertDialog waitingForLocationDialog;
 
     private Context context;
     private LocationsRepository locations;
+    private MediaPlayer player;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,5 +117,22 @@ public class SettingsActivity extends AppCompatActivity {
         Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         Log.i("SettingsActivity", "S-senpai! That t-t-tickl~ Fuwaaaaaa~ <3");
         v.vibrate(500);
+    }
+
+    @OnClick(R.id.button_sound_test) void playSound() {
+        if (CUSTOM_SOUNDS_ENABLED) {
+            // Play app-defined sound.
+            player = MediaPlayer.create(this, R.raw.spooky);
+            Log.i("SettingsActivity", "Playing sound effect.");
+            player.start();
+        }
+        else{
+            // Play user-defined ringtone
+            Log.i("SettingsActivity", "Playing default ringtone.");
+            Uri ringtoneUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+            Ringtone ringtoneSound = RingtoneManager.getRingtone(getApplicationContext(), ringtoneUri);
+            if (ringtoneSound != null)
+                ringtoneSound.play();
+        }
     }
 }
