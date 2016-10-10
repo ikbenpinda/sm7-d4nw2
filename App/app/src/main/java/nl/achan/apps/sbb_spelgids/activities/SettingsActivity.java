@@ -3,6 +3,7 @@ package nl.achan.apps.sbb_spelgids.activities;
 import android.content.Context;
 import android.location.Location;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
@@ -103,5 +104,11 @@ public class SettingsActivity extends AppCompatActivity {
 
     @OnClick(R.id.button_manage_locations) void manageLocations(){
         locationsDialog.show();
+    }
+
+    @OnClick(R.id.button_vibration_test) void vibrate(){
+        Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        Log.i("SettingsActivity", "S-senpai! That t-t-tickl~ Fuwaaaaaa~ <3");
+        v.vibrate(500);
     }
 }
