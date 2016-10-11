@@ -22,10 +22,10 @@
         <item>"2"</item>
     </string-array>
     <string-array name="connection_method">
-        <item>"bluetooth"</item>
         <item>"GPS"</item>
-        <item>"netwerk"</item>
-        <item>"barcode"</item>
+        <item>"Barcode"</item>
+        <item>"Netwerk"</item>
         <item>"NFC"</item>
+        <item>"Bluetooth"</item>
     </string-array>
 </resources>

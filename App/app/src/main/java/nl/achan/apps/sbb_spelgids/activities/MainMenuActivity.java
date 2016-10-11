@@ -141,7 +141,7 @@ public class MainMenuActivity extends AppCompatActivity {
                         .setPositiveButton("melden", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                Snackbar.make(coordinatorLayout, "Melding gemaakt, dankjewel!", Snackbar.LENGTH_SHORT).show();
+                                Snackbar.make(coordinatorLayout, "Melding gemaakt. Dankjewel!", Snackbar.LENGTH_SHORT).show();
                             }
                         })
                         .create()

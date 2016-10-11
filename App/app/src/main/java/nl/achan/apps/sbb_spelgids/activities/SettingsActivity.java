@@ -1,6 +1,7 @@
 package nl.achan.apps.sbb_spelgids.activities;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.location.Location;
 import android.media.MediaPlayer;
 import android.media.Ringtone;
@@ -17,6 +18,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
@@ -31,6 +33,9 @@ import nl.achan.apps.sbb_spelgids.location.LocationAdapter;
 import nl.achan.apps.sbb_spelgids.location.LocationsRepository;
 import nl.achan.apps.sbb_spelgids.models.Level;
 
+/**
+ * todo strat pattern for location handling.
+ */
 public class SettingsActivity extends AppCompatActivity {
 
     @BindView(R.id.toolbar) Toolbar toolbar;
@@ -46,6 +51,7 @@ public class SettingsActivity extends AppCompatActivity {
     private LocationsRepository locations;
     private MediaPlayer player;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +59,7 @@ public class SettingsActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         context = getBaseContext();
         locations = ((D4NW2) getApplication()).getLocations();
@@ -109,6 +116,17 @@ public class SettingsActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
     @OnClick(R.id.button_manage_locations) void manageLocations(){
         locationsDialog.show();
     }
@@ -134,5 +152,22 @@ public class SettingsActivity extends AppCompatActivity {
             if (ringtoneSound != null)
                 ringtoneSound.play();
         }
+    }
+
+    @OnClick(R.id.button_reset_settings) void resetSettings(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Alles verwijderen?");
+        builder.setMessage("Nigga, wat doe je?");
+        builder.setNegativeButton("haha grapje", null);
+        builder.setPositiveButton("Laat mij", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                // todo reset repository.
+
+                Snackbar.make(layout, "Instellingen zijn gereset.", Snackbar.LENGTH_SHORT).show();
+            }
+        });
+        builder.create().show();
     }
 }
