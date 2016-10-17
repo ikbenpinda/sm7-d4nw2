@@ -40,7 +40,11 @@ public class MainMenuActivity extends AppCompatActivity {
     @BindView(R.id.recview_leaderboard)
     RecyclerView leaderboard;
 
+    public static final String ADMIN_PASSWORD = "/login"; // for hiding the settings menu.
+
     Context context;
+
+    int passwordCount = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,11 +126,36 @@ public class MainMenuActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         switch (id){
-            case R.id.action_settings:
-                startActivity(new Intent(this, SettingsActivity.class));
+            case R.id.action_settings: // change at will.
+//                if (passwordCount < 5) {
+//                    passwordCount++;
+                    Snackbar.make(coordinatorLayout, "Niet beschikbaar.", Snackbar.LENGTH_SHORT).show();
+//                    break;
+//                }
+//                final EditText passwordbox = new EditText(this);
+//                passwordbox.setPadding(16, 16, 16, 16);
+//                passwordbox.setHint("wachtwoord");
+//                passwordbox.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD);
+//                AlertDialog passwordDialog = new AlertDialog.Builder(this)
+//                        .setTitle("Adminopties")
+//                        .setView(passwordbox)
+//                        .setNegativeButton("Annuleren", null)
+//                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+//                            @Override
+//                            public void onClick(DialogInterface dialog, int which) {
+//                                if (passwordbox.getText().toString().equals("admin")) {
+//                                    passwordCount = 0;
+//                                    startActivity(new Intent(context, SettingsActivity.class));
+//                                }
+//                                else
+//                                    Snackbar.make(coordinatorLayout, "Nee. Nog steeds niet.", Snackbar.LENGTH_SHORT);
+//                            }
+//                        })
+//                        .create();
+//                passwordDialog.show();
                 break;
             case R.id.action_feedback:
-                EditText feedbackbox = new EditText(this);
+                final EditText feedbackbox = new EditText(this);
                 LinearLayout layout = new LinearLayout(this);
                 layout.setOrientation(LinearLayout.VERTICAL);
                 int def_padding = getResources().getDimensionPixelSize(R.dimen.padding_default_16);
@@ -141,7 +170,10 @@ public class MainMenuActivity extends AppCompatActivity {
                         .setPositiveButton("melden", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                Snackbar.make(coordinatorLayout, "Melding gemaakt. Dankjewel!", Snackbar.LENGTH_SHORT).show();
+                                if (feedbackbox.getText().toString().equals(ADMIN_PASSWORD))
+                                    startActivity(new Intent(context, SettingsActivity.class));
+                                else
+                                    Snackbar.make(coordinatorLayout, "Melding gemaakt. Dankjewel!", Snackbar.LENGTH_SHORT).show();
                             }
                         })
                         .create()
