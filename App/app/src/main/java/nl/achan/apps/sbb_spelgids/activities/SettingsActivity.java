@@ -20,7 +20,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -72,7 +77,8 @@ public class SettingsActivity extends AppCompatActivity {
                 .create();
 
         final View locationsDialogView = LayoutInflater.from(this).inflate(R.layout.dialog_locations, null);
-        locationsDialog = new AlertDialog.Builder(this).setView(locationsDialogView)
+        locationsDialog = new AlertDialog.Builder(this)
+                .setView(locationsDialogView)
                 .setTitle("Manage locaties")
                 .setNeutralButton("terug", null)
                 .create();
@@ -100,10 +106,11 @@ public class SettingsActivity extends AppCompatActivity {
                         .start(new OnLocationUpdatedListener() {
                             @Override
                             public void onLocationUpdated(Location location) {
-                                Log.i("LocationManager", "Location Registered: " + location.toString());
-                                Level level = new Level(location, "level #");
-                                level.name += level.hashCode();
+                                int id = locations.getAllLevels().size() + 1;
+                                Level level = new Level(location, "level #" + id);
+                                level._id = id;
                                 locations.register(level);
+                                Log.i("LocationManager", "Location Registered: " + location.toString());
                                 waitingForLocationDialog.dismiss();
                                 Snackbar.make(
                                         layout,
@@ -163,11 +170,33 @@ public class SettingsActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
-                // todo reset repository.
+                locations.getAllLevels().clear();
+                ((D4NW2)context.getApplicationContext()).distances.clear();
+                // todo - clear additional data(database, sharedprefs)?
 
                 Snackbar.make(layout, "Instellingen zijn gereset.", Snackbar.LENGTH_SHORT).show();
             }
         });
         builder.create().show();
+    }
+
+    // FIXME - temp GPS debugging tool.
+    @OnClick(R.id.button_show_GPS_log) void showLog(){
+        View distancesView = LayoutInflater.from(context).inflate(R.layout.dialog_distances, null);
+        List<String> formattedDistances = new ArrayList<>();
+        List<Double> distances = ((D4NW2)context.getApplicationContext()).distances;
+        int i = 0;
+        for (Double distance: distances) {
+            i++;
+            formattedDistances.add("#" + i + " @ " + distance + "m");
+        }
+        ListView distancesListView = (ListView)distancesView.findViewById(R.id.lv_distances);
+        distancesListView.setAdapter(new ArrayAdapter<>(context, android.R.layout.simple_list_item_1, formattedDistances));
+        AlertDialog dialog = new AlertDialog.Builder(this)
+            .setTitle("Logboek")
+            .setView(distancesView)
+            .setNeutralButton("Terug", null)
+            .create();
+        dialog.show();
     }
 }

@@ -36,7 +36,9 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.location.setText(levels.get(holder.getAdapterPosition()).toString());
+        Level level = levels.get(holder.getAdapterPosition());
+        String data = level.name + " @ " + level.location.getLatitude() + " / " + level.location.getLongitude();
+        holder.location.setText(data);
     }
 
     @Override

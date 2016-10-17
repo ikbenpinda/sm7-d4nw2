@@ -46,7 +46,7 @@ public class LocationsRepository {
     public Level register(Level level){
         cache.add(level);
         //database.call().put(level);
-        Log.i("levelsRepository", "Upserted model " + level.toString());
+        Log.i("levelsRepository", "Added model " + level.toString());
         return level;
     }
 

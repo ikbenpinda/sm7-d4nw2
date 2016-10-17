@@ -50,8 +50,6 @@ import nl.achan.apps.sbb_spelgids.R;
 import nl.achan.apps.sbb_spelgids.camera.CameraSource;
 import nl.achan.apps.sbb_spelgids.camera.CameraSourcePreview;
 import nl.achan.apps.sbb_spelgids.camera.GraphicOverlay;
-import nl.achan.apps.sbb_spelgids.scanner.BarcodeGraphic;
-import nl.achan.apps.sbb_spelgids.scanner.BarcodeTrackerFactory;
 
 /**
  * Activity for the multi-tracker app.  This app detects barcodes and displays the value with the
@@ -92,7 +90,7 @@ public final class BarcodeCaptureActivity extends AppCompatActivity {
         mGraphicOverlay = (GraphicOverlay<BarcodeGraphic>) findViewById(R.id.graphicOverlay);
 
         // read parameters from the intent used to launch the activity.
-        boolean autoFocus = getIntent().getBooleanExtra(AutoFocus, false);
+        boolean autoFocus = getIntent().getBooleanExtra(AutoFocus, true);
         boolean useFlash = getIntent().getBooleanExtra(UseFlash, false);
 
         // Check for the camera permission before accessing the camera.  If the

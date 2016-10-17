@@ -8,7 +8,7 @@ import android.location.Location;
 public class Level {
 
     /**
-     * As needed by Cupboard for the persistence layer.
+     * As needed for the persistence layer.
      */
     public long _id;
 
@@ -18,12 +18,27 @@ public class Level {
     public Location location;
 
     /**
-     * Custom name, optional.
+     * Identifying code of the level.
+     * Not the same as Level._id,
+     * which is used for the database
+     * and may not be sequentially ordered.
+     */
+    public String identifier;
+
+    /**
+     * Custom human-readable name of the stage, optional.
      */
     public String name = "naamloze locatie";
 
     public Level(Location location, String name) {
         this.location = location;
         this.name = name;
+    }
+
+    /**
+     * Custom human-readable name of the stage, optional.
+     */
+    public Level(Location location) {
+        this.location = location;
     }
 }
